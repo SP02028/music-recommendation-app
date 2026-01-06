@@ -23,6 +23,8 @@ The app uses two datasets that are automatically downloaded from Google Cloud St
 
 ## Installation
 
+### Quick Start (Automatic Setup)
+
 1. Clone this repository:
 ```bash
 git clone https://github.com/SP02028/music-recommendation-app.git
@@ -34,10 +36,42 @@ cd music-recommendation-app
 pip install -r requirements.txt
 ```
 
-3. Download the data files:
+3. Run the app (data downloads automatically on first run):
+```bash
+streamlit run app.py
+```
+
+**That's it!** The data files will be downloaded automatically the first time you run the app.
+
+### Deploy to Streamlit Cloud
+
+This app works out-of-the-box on Streamlit Cloud:
+
+1. Go to [share.streamlit.io](https://share.streamlit.io)
+2. Sign in with your GitHub account  
+3. Click "New app"
+4. Select:
+   - Repository: `SP02028/music-recommendation-app`
+   - Branch: `main`
+   - Main file: `app.py`
+5. Click "Deploy"
+
+The data files download automatically during deployment! 🚀
+
+### Manual Data Download (Optional)
+
+If you prefer to download data files manually before running:
+
+**On Mac/Linux:**
 ```bash
 wget 'https://storage.googleapis.com/inspirit-ai-data-bucket-1/Data/AI%20Scholars/Sessions%206%20-%2010%20(Projects)/Project%20-%20Music%20Recommendation/data_with_most_lyrics.csv'
 wget 'https://storage.googleapis.com/inspirit-ai-data-bucket-1/Data/AI%20Scholars/Sessions%206%20-%2010%20(Projects)/Project%20-%20Music%20Recommendation/spotify_data_urls.csv'
+```
+
+**On Windows (PowerShell):**
+```powershell
+Invoke-WebRequest -Uri 'https://storage.googleapis.com/inspirit-ai-data-bucket-1/Data/AI%20Scholars/Sessions%206%20-%2010%20(Projects)/Project%20-%20Music%20Recommendation/data_with_most_lyrics.csv' -OutFile 'data_with_most_lyrics.csv'
+Invoke-WebRequest -Uri 'https://storage.googleapis.com/inspirit-ai-data-bucket-1/Data/AI%20Scholars/Sessions%206%20-%2010%20(Projects)/Project%20-%20Music%20Recommendation/spotify_data_urls.csv' -OutFile 'spotify_data_urls.csv'
 ```
 
 ## Usage
