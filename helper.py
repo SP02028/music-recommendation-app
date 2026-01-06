@@ -20,9 +20,12 @@ def download_data_if_needed():
     }
     for filename, url in data_files.items():
         if not os.path.exists(filename):
-            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-            with urllib.request.urlopen(req) as response, open(filename, 'wb') as out_file:
-                out_file.write(response.read())
+            try:
+                req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+                with urllib.request.urlopen(req) as response, open(filename, 'wb') as out_file:
+                    out_file.write(response.read())
+            except Exception as e:
+                raise RuntimeError(f"Failed to download {filename}: {e}")
 
 download_data_if_needed()
 
