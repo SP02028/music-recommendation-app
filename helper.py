@@ -9,6 +9,23 @@ from sklearn.metrics import pairwise_distances
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 
+import os
+import urllib.request
+
+# Ensure data files are available
+def download_data_if_needed():
+    data_files = {
+        'data_with_most_lyrics.csv': 'https://storage.googleapis.com/inspirit-ai-data-bucket-1/Data/AI%20Scholars/Sessions%206%20-%2010%20(Projects)/Project%20-%20Music%20Recommendation/data_with_most_lyrics.csv',
+        'spotify_data_urls.csv': 'https://storage.googleapis.com/inspirit-ai-data-bucket-1/Data/AI%20Scholars/Sessions%206%20-%2010%20(Projects)/Project%20-%20Music%20Recommendation/spotify_data_urls.csv'
+    }
+    for filename, url in data_files.items():
+        if not os.path.exists(filename):
+            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+            with urllib.request.urlopen(req) as response, open(filename, 'wb') as out_file:
+                out_file.write(response.read())
+
+download_data_if_needed()
+
 # Music data
 music_data = pd.read_csv('data_with_most_lyrics.csv')
 music_data = music_data.drop(columns=['Unnamed: 0', 'Unnamed: 0.1'])

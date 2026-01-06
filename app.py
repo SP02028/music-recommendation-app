@@ -3,6 +3,14 @@ import streamlit.components.v1 as components
 
 import pandas as pd
 import numpy as np
+import os
+from setup import download_data
+
+# Download data files if they don't exist
+if not os.path.exists('data_with_most_lyrics.csv') or not os.path.exists('spotify_data_urls.csv'):
+    with st.spinner('Downloading data files... This may take a minute on first run.'):
+        download_data()
+
 from header import *
 from response import *
 from helper import *
